@@ -6,15 +6,15 @@ We’d like you to use our simple, fake javascript framework to create a widget 
 Create a 'super checkbox' that allows a user to check or uncheck all of the related checkboxes simultaneously.
 - The controlling checkbox will have three states: a checked state, an unchecked state, and an intermediary state.
 - When controlling checkbox is unchecked:
-- - if the user clicks on a related checkbox, that checkbox becomes checked, and the controlling checkbox remains unchecked.
-- - if the user clicks on the controlling checkbox, it becomes checked and related checkboxes become checked.
+  - if the user clicks on a related checkbox, that checkbox becomes checked, and the controlling checkbox remains unchecked.
+  - if the user clicks on the controlling checkbox, it becomes checked and related checkboxes become checked.
 - When the controlling checkbox is checked:
-- - if the user clicks on the controlling checkbox, it becomes unchecked, and all related checkboxes become unchecked.
-- - if the user clicks on a related checkbox, that checkbox becomes unchecked, and the controlling checkbox enters the intermediary state.
+  - if the user clicks on the controlling checkbox, it becomes unchecked, and all related checkboxes become unchecked.
+  - if the user clicks on a related checkbox, that checkbox becomes unchecked, and the controlling checkbox enters the intermediary state.
 - When the controlling checkbox is in the intermediary state:
-- - if the user clicks on the controlling checkbox, it becomes unchecked, and all related checkboxes become unchecked.
-- - if the user clicks on a checked related checkbox, the controlling checkbox remains in the intermediary state unless there are no more checked related boxes, in which case it returns to the unchecked state.
-- - if the user clicks on an unchecked related checkbox, the controlling checkbox remains in the intermediary state unless there are no more unchecked related boxes, in which case it returns to the checked state.
+  - if the user clicks on the controlling checkbox, it becomes unchecked, and all related checkboxes become unchecked.
+  - if the user clicks on a checked related checkbox, the controlling checkbox remains in the intermediary state unless there are no more checked related boxes, in which case it returns to the unchecked state.
+  - if the user clicks on an unchecked related checkbox, the controlling checkbox remains in the intermediary state unless there are no more unchecked related boxes, in which case it returns to the checked state.
 - for an example of this behavior, check out a gmail inbox
 
 ##What we’re looking for:

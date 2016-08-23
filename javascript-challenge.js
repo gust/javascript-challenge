@@ -5,9 +5,9 @@ var _vs = require('./vs');
 
 var _vs2 = _interopRequireDefault(_vs);
 
-var _accordion = require('./widgets/accordion');
+var _drawers = require('./widgets/drawers');
 
-var _accordion2 = _interopRequireDefault(_accordion);
+var _drawers2 = _interopRequireDefault(_drawers);
 
 var _extendingForm = require('./widgets/extending-form');
 
@@ -21,14 +21,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 document.addEventListener("DOMContentLoaded", function () {
   _vs2.default.initializeWidgets({
-    accordion: _accordion2.default,
+    drawers: _drawers2.default,
     extendingForm: _extendingForm2.default,
-    tabs: _tabs2.default,
-    foo: 'bar'
+    tabs: _tabs2.default
   });
 });
 
-},{"./vs":2,"./widgets/accordion":3,"./widgets/extending-form":4,"./widgets/tabs":5}],2:[function(require,module,exports){
+},{"./vs":2,"./widgets/drawers":3,"./widgets/extending-form":4,"./widgets/tabs":5}],2:[function(require,module,exports){
 'use strict';
 
 var VS = {
@@ -54,33 +53,23 @@ module.exports = VS;
 
 var accordion = {
   initialize: function initialize(widget) {
-    var contents = widget.querySelectorAll('[vs-role=content]');
-    var tabs = widget.querySelectorAll('[vs-role=tab]');
+    var handles = widget.querySelectorAll('[vs-role=handle]');
+    var drawers = widget.querySelectorAll('[vs-role=drawer]');
 
-    function dependentHide() {
-      var activeTab = widget.querySelector('.active[vs-role=tab]');
+    function handleClick(e) {
+      var openId = e.target.getAttribute('vs-id');
 
-      contents.forEach(function (content) {
-        if (activeTab.getAttribute('vs-id') == content.getAttribute('vs-tab-id')) {
-          content.classList.add('active');
+      drawers.forEach(function (drawer) {
+        if (drawer.getAttribute('vs-handle-id') == openId) {
+          drawer.classList.toggle('open');
         } else {
-          content.classList.remove('active');
+          drawer.classList.remove('open');
         }
       });
     }
 
-    function handleTabClick(e) {
-      tabs.forEach(function (tab) {
-        tab.classList.remove('active');
-      });
-      e.target.classList.add('active');
-      dependentHide();
-    }
-
-    dependentHide();
-
-    tabs.forEach(function (tab) {
-      tab.addEventListener('click', handleTabClick);
+    handles.forEach(function (handle) {
+      handle.addEventListener('click', handleClick);
     });
   }
 };

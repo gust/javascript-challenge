@@ -1,0 +1,33 @@
+[vs-type=tabs] {
+  ul {
+    @include clearfix;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 100%;
+
+    li[vs-role=tab] {
+      float: left;
+      padding: 6px 12px;
+      margin: 0 2px;
+      border: 1px solid $lt-blue;
+      border-bottom: none;
+      border-top-right-radius: 4px;
+      border-top-left-radius: 4px;
+      color: $lt-blue;
+      &:hover { cursor: pointer }
+      &.active {
+        color: white;
+        background-color: $blue;
+        border-color: $blue;
+      }
+    }
+  }
+
+  [vs-role=content] {
+    border: 1px solid $blue;
+    width: 100%;
+    &:not(.active) { display: none; }
+    img { width: 100% }
+  }
+}

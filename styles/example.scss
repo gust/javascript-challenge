@@ -1,0 +1,12 @@
+section.example {
+  margin-bottom: 50px;
+  h2 {
+    text-transform: uppercase;
+    font-size: 17px;
+    font-weight: 400;
+    width: 100%;
+    color: $blue;
+    padding: 6px;
+    border-bottom: 1px solid $lt-blue;
+  }
+}

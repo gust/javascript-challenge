@@ -1,13 +1,12 @@
 import VS            from './vs';
-import accordion     from './widgets/accordion';
+import drawers       from './widgets/drawers';
 import extendingForm from './widgets/extending-form';
 import tabs          from './widgets/tabs';
 
 document.addEventListener("DOMContentLoaded", () => {
   VS.initializeWidgets({
-    accordion,
+    drawers,
     extendingForm,
-    tabs,
-    foo: 'bar'
+    tabs
   });
 });

@@ -1,0 +1,53 @@
+body {
+  font-family: sans-serif;
+  font-size: 15px;
+  color: #222;
+  padding: 50px 110px;
+  line-height: 1.7; }
+  body textarea {
+    width: 100%;
+    padding: 12px;
+    border: none; }
+
+label {
+  display: block; }
+
+.strong {
+  font-weight: bold; }
+
+section.example {
+  margin-bottom: 50px; }
+  section.example h2 {
+    text-transform: uppercase;
+    font-size: 17px;
+    font-weight: 400;
+    width: 100%;
+    color: #00B7BD;
+    padding: 6px;
+    border-bottom: 1px solid #C3EBEE; }
+
+form[vs-type=extendingForm] [vs-role=extension] {
+  margin: 5px 0;
+  padding: 12px;
+  background-color: #EEEEEE;
+  display: none; }
+  form[vs-type=extendingForm] [vs-role=extension].reveal {
+    display: block; }
+
+[vs-type=tabs] ul {
+  padding: 0;
+  list-style: none;
+  width: 100%; }
+  [vs-type=tabs] ul:after {
+    visibility: hidden;
+    display: block;
+    content: "";
+    clear: both; }
+  [vs-type=tabs] ul li[vs-role=tab] {
+    float: left;
+    padding: 12px; }
+    [vs-type=tabs] ul li[vs-role=tab]:hover {
+      cursor: pointer; }
+
+[vs-type=tabs] [vs-role=content]:not(.active) {
+  display: none; }

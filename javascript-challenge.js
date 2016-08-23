@@ -5,25 +5,30 @@ var _vs = require('./vs');
 
 var _vs2 = _interopRequireDefault(_vs);
 
-var _bar = require('./widgets/bar');
+var _accordion = require('./widgets/accordion');
 
-var _bar2 = _interopRequireDefault(_bar);
+var _accordion2 = _interopRequireDefault(_accordion);
 
-var _baz = require('./widgets/baz');
+var _extendingForm = require('./widgets/extending-form');
 
-var _baz2 = _interopRequireDefault(_baz);
+var _extendingForm2 = _interopRequireDefault(_extendingForm);
 
-var _qux = require('./widgets/qux');
+var _tabs = require('./widgets/tabs');
 
-var _qux2 = _interopRequireDefault(_qux);
+var _tabs2 = _interopRequireDefault(_tabs);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 document.addEventListener("DOMContentLoaded", function () {
-  _vs2.default.initializeWidgets({ bar: _bar2.default, baz: _baz2.default, qux: _qux2.default });
+  _vs2.default.initializeWidgets({
+    accordion: _accordion2.default,
+    extendingForm: _extendingForm2.default,
+    tabs: _tabs2.default,
+    foo: 'bar'
+  });
 });
 
-},{"./vs":2,"./widgets/bar":3,"./widgets/baz":4,"./widgets/qux":5}],2:[function(require,module,exports){
+},{"./vs":2,"./widgets/accordion":3,"./widgets/extending-form":4,"./widgets/tabs":5}],2:[function(require,module,exports){
 'use strict';
 
 var VS = {
@@ -47,34 +52,105 @@ module.exports = VS;
 },{}],3:[function(require,module,exports){
 'use strict';
 
-var bar = {
+var accordion = {
   initialize: function initialize(widget) {
-    widget.setAttribute('style', 'color: red');
+    var contents = widget.querySelectorAll('[vs-role=content]');
+    var tabs = widget.querySelectorAll('[vs-role=tab]');
+
+    function dependentHide() {
+      var activeTab = widget.querySelector('.active[vs-role=tab]');
+
+      contents.forEach(function (content) {
+        if (activeTab.getAttribute('vs-id') == content.getAttribute('vs-tab-id')) {
+          content.classList.add('active');
+        } else {
+          content.classList.remove('active');
+        }
+      });
+    }
+
+    function handleTabClick(e) {
+      tabs.forEach(function (tab) {
+        tab.classList.remove('active');
+      });
+      e.target.classList.add('active');
+      dependentHide();
+    }
+
+    dependentHide();
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', handleTabClick);
+    });
   }
 };
 
-module.exports = bar;
+module.exports = accordion;
 
 },{}],4:[function(require,module,exports){
 'use strict';
 
-var bar = {
+var extendingForm = {
   initialize: function initialize(widget) {
-    widget.setAttribute('style', 'color: blue');
+    var extensions = widget.querySelectorAll('[vs-role=extension]');
+    var toggle = widget.querySelector('[vs-role=toggle]');
+
+    function dependentHide() {
+      extensions.forEach(function (extension) {
+        if (toggle.value == extension.getAttribute('vs-trigger')) {
+          extension.classList.add('reveal');
+        } else {
+          extension.classList.remove('reveal');
+        }
+      });
+    }
+
+    dependentHide();
+
+    toggle.addEventListener('change', function (toggle) {
+      dependentHide();
+    });
   }
 };
 
-module.exports = bar;
+module.exports = extendingForm;
 
 },{}],5:[function(require,module,exports){
 'use strict';
 
-var bar = {
+var tabs = {
   initialize: function initialize(widget) {
-    widget.setAttribute('style', 'color: green');
+    var contents = widget.querySelectorAll('[vs-role=content]');
+    var tabs = widget.querySelectorAll('[vs-role=tab]');
+
+    function dependentHide() {
+      var activeTab = widget.querySelector('.active[vs-role=tab]');
+
+      contents.forEach(function (content) {
+        if (activeTab.getAttribute('vs-id') == content.getAttribute('vs-tab-id')) {
+          content.classList.add('active');
+        } else {
+          content.classList.remove('active');
+        }
+      });
+    }
+
+    function handleTabClick(e) {
+      tabs.forEach(function (tab) {
+        tab.classList.remove('active');
+      });
+      e.target.classList.add('active');
+      dependentHide();
+    }
+
+    dependentHide();
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', handleTabClick);
+    });
   }
 };
 
-module.exports = bar;
+module.exports = tabs;
 
 },{}]},{},[1]);

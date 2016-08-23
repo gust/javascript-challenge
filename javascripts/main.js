@@ -1,8 +1,13 @@
-import VS from './vs';
-import bar from './widgets/bar';
-import baz from './widgets/baz';
-import qux from './widgets/qux';
+import VS            from './vs';
+import accordion     from './widgets/accordion';
+import extendingForm from './widgets/extending-form';
+import tabs          from './widgets/tabs';
 
 document.addEventListener("DOMContentLoaded", () => {
-  VS.initializeWidgets({ bar, baz, qux });
+  VS.initializeWidgets({
+    accordion,
+    extendingForm,
+    tabs,
+    foo: 'bar'
+  });
 });

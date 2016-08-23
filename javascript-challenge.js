@@ -46,13 +46,17 @@ var _tabs = require('./widgets/tabs');
 
 var _tabs2 = _interopRequireDefault(_tabs);
 
+var _toggle = require('./widgets/toggle');
+
+var _toggle2 = _interopRequireDefault(_toggle);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 document.addEventListener("DOMContentLoaded", function () {
-  (0, _k2.default)({ drawers: _drawers2.default, extendingForm: _extendingForm2.default, tabs: _tabs2.default }, document);
+  (0, _k2.default)({ drawers: _drawers2.default, extendingForm: _extendingForm2.default, tabs: _tabs2.default, toggle: _toggle2.default }, document);
 });
 
-},{"./k":1,"./widgets/drawers":3,"./widgets/extending-form":4,"./widgets/tabs":5}],3:[function(require,module,exports){
+},{"./k":1,"./widgets/drawers":3,"./widgets/extending-form":4,"./widgets/tabs":5,"./widgets/toggle":6}],3:[function(require,module,exports){
 'use strict';
 
 function accordion(widget) {
@@ -154,5 +158,45 @@ function tabs(widget) {
 }
 
 module.exports = tabs;
+
+},{}],6:[function(require,module,exports){
+'use strict';
+
+function toggle(widget) {
+	var allCheckboxes = widget.querySelectorAll('[kjs-role]');
+
+	function setup() {
+		allCheckboxes.forEach(function (checkbox) {
+			checkbox.checked = false;
+		});
+	}
+
+	var actions = [];
+
+	var toggleAll = widget.querySelector('[kjs-role=toggleAll]');
+	var toggle = widget.querySelectorAll('[kjs-role=toggle]');
+
+	actions.push({
+		element: toggleAll,
+		event: 'change',
+		handler: function handler() {
+			console.log('implement me!');
+		}
+	});
+
+	toggle.forEach(function (checkbox) {
+		actions.push({
+			element: checkbox,
+			event: 'change',
+			handler: function handler() {
+				console.log('implement me!');
+			}
+		});
+	});
+
+	return { setup: setup, actions: actions };
+}
+
+module.exports = toggle;
 
 },{}]},{},[2]);

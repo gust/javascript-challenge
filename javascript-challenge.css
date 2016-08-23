@@ -26,42 +26,42 @@ section.example {
     padding: 6px;
     border-bottom: 1px solid #C3EBEE; }
 
-[vs-role=drawer] {
+[kjs-role=drawer] {
   background-color: #00B7BD;
   color: white; }
-  [vs-role=drawer]:not(.open) {
+  [kjs-role=drawer]:not(.open) {
     height: 0;
     overflow: hidden; }
-  [vs-role=drawer].open {
+  [kjs-role=drawer].open {
     padding: 6px; }
 
-[vs-role=handle] {
+[kjs-role=handle] {
   border: 1px solid #00B7BD;
   padding: 6px;
   margin-top: 2px; }
-  [vs-role=handle]:hover {
+  [kjs-role=handle]:hover {
     cursor: pointer; }
 
-form[vs-type=extendingForm] [vs-role=extension] {
+form[kjs-type=extendingForm] [kjs-role=extension] {
   margin: 5px 0;
   width: 100%;
   padding: 12px;
   background-color: #C3EBEE;
   display: none; }
-  form[vs-type=extendingForm] [vs-role=extension].reveal {
+  form[kjs-type=extendingForm] [kjs-role=extension].reveal {
     display: block; }
 
-[vs-type=tabs] ul {
+[kjs-type=tabs] ul {
   margin: 0;
   padding: 0;
   list-style: none;
   width: 100%; }
-  [vs-type=tabs] ul:after {
+  [kjs-type=tabs] ul:after {
     visibility: hidden;
     display: block;
     content: "";
     clear: both; }
-  [vs-type=tabs] ul li[vs-role=tab] {
+  [kjs-type=tabs] ul li[kjs-role=tab] {
     float: left;
     padding: 6px 12px;
     margin: 0 2px;
@@ -70,17 +70,17 @@ form[vs-type=extendingForm] [vs-role=extension] {
     border-top-right-radius: 4px;
     border-top-left-radius: 4px;
     color: #C3EBEE; }
-    [vs-type=tabs] ul li[vs-role=tab]:hover {
+    [kjs-type=tabs] ul li[kjs-role=tab]:hover {
       cursor: pointer; }
-    [vs-type=tabs] ul li[vs-role=tab].active {
+    [kjs-type=tabs] ul li[kjs-role=tab].active {
       color: white;
       background-color: #00B7BD;
       border-color: #00B7BD; }
 
-[vs-type=tabs] [vs-role=content] {
+[kjs-type=tabs] [kjs-role=content] {
   border: 1px solid #00B7BD;
   width: 100%; }
-  [vs-type=tabs] [vs-role=content]:not(.active) {
+  [kjs-type=tabs] [kjs-role=content]:not(.active) {
     display: none; }
-  [vs-type=tabs] [vs-role=content] img {
+  [kjs-type=tabs] [kjs-role=content] img {
     width: 100%; }

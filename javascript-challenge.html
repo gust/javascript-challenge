@@ -13,27 +13,27 @@
   <body>
     <section class="example">
       <h2>Self-extending Form</h2>
-      <form vs-type="extendingForm">
+      <form kjs-type="extendingForm">
         <label>Do you like green eggs and ham?
-          <select vs-role="toggle">
+          <select kjs-role="toggle">
             <option value=""selected>Select One</option>
             <option value="yes">I do not like them, Sam-I-Am.</option>
             <option value="no">Say! I like green eggs and ham!</option>
             <option value="idk">I am unsure.</option>
           </select>
         </label>
-        <div vs-role="extension" vs-trigger="yes">
+        <div kjs-role="extension" kjs-trigger="yes">
           <div>Try them, try them, and you may! Try them and you may I say!</div>
           <label><input type="checkbox" name="try">I decline the invitation to try said eggs and ham.</label>
         </div>
-        <div vs-role="extension" vs-trigger="no">
+        <div kjs-role="extension" kjs-trigger="no">
           <label>Check all that apply:</label>
           <label><input type="radio" name="where" value="boat"/>I would eat them in a boat.</label>
           <label><input type="radio" name="where" value="goat"/>I would eat them with a goat.</label>
           <label><input type="radio" name="where" value="herethere"/>I would eat them here or there.</label>
           <label><input type="radio" name="where" value="anywhere"/>I would eat them anywhere.</label>
         </div>
-        <div vs-role="extension" vs-trigger="idk">
+        <div kjs-role="extension" kjs-trigger="idk">
           <label>Have you previously had the opportunity to try green eggs and ham? Please explain.  </label>
           <textarea placeholder="Please provide details on any previous experience with green eggs and ham"></textarea>
         </div>
@@ -42,29 +42,29 @@
 
     <section class="example">
       <h2>Tabs</h2>
-      <div vs-type="tabs">
+      <div kjs-type="tabs">
         <ul class="tabs">
-          <li vs-role="tab" vs-id="1" class="active">One Fish</li>
-          <li vs-role="tab" vs-id="2">Two Fish</li>
-          <li vs-role="tab" vs-id="3">Red Fish</li>
-          <li vs-role="tab" vs-id="4">Blue Fish</li>
+          <li kjs-role="tab" kjs-id="1" class="active">One Fish</li>
+          <li kjs-role="tab" kjs-id="2">Two Fish</li>
+          <li kjs-role="tab" kjs-id="3">Red Fish</li>
+          <li kjs-role="tab" kjs-id="4">Blue Fish</li>
         </ul>
-        <div vs-role="content" vs-tab-id="1" class="active"><img src="images/one-fish.jpg"></div>
-        <div vs-role="content" vs-tab-id="2"><img src="images/two-fish.jpg"></div>
-        <div vs-role="content" vs-tab-id="3"><img src="images/red-fish.jpg"></div>
-        <div vs-role="content" vs-tab-id="4"><img src="images/blue-fish.jpg"></div>
+        <div kjs-role="content" kjs-tab-id="1" class="active"><img src="images/one-fish.jpg"></div>
+        <div kjs-role="content" kjs-tab-id="2"><img src="images/two-fish.jpg"></div>
+        <div kjs-role="content" kjs-tab-id="3"><img src="images/red-fish.jpg"></div>
+        <div kjs-role="content" kjs-tab-id="4"><img src="images/blue-fish.jpg"></div>
       </div>
     </section>
 
     <section class="example">
       <h2>Drawers</h2>
-      <div vs-type="drawers">
-        <div vs-role="handle" vs-id="1">The Lorax</div>
-        <div vs-role="drawer" vs-handle-id="1">Unless someone like you cares a whole awful lot, nothing is going to get better. It's not!</div>
-        <div vs-role="handle" vs-id="2">The Cat in the Hat</div>
-        <div vs-role="drawer" vs-handle-id="2">There is no one alive who is youer than you.</div>
-        <div vs-role="handle" vs-id="3">The Grinch</div>
-        <div vs-role="drawer" vs-handle-id="3">There's a light on this tree that won't light on one side.</div>
+      <div kjs-type="drawers">
+        <div kjs-role="handle" kjs-id="1">The Lorax</div>
+        <div kjs-role="drawer" kjs-handle-id="1">Unless someone like you cares a whole awful lot, nothing is going to get better. It's not!</div>
+        <div kjs-role="handle" kjs-id="2">The Cat in the Hat</div>
+        <div kjs-role="drawer" kjs-handle-id="2">There is no one alive who is youer than you.</div>
+        <div kjs-role="handle" kjs-id="3">The Grinch</div>
+        <div kjs-role="drawer" kjs-handle-id="3">There's a light on this tree that won't light on one side.</div>
       </div>
     </section>
 

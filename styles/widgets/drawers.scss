@@ -1,11 +1,11 @@
-[vs-role=drawer] {
+[kjs-role=drawer] {
   &:not(.open) { height: 0; overflow: hidden; }
   &.open { padding: 6px; }
   background-color: $blue;
   color: white;
 }
 
-[vs-role=handle] {
+[kjs-role=handle] {
   &:hover { cursor: pointer; }
   border: 1px solid $blue;
   padding: 6px;

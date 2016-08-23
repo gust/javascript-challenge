@@ -1,24 +1,24 @@
-const extendingForm = {
-  initialize(widget) {
-    const extensions = widget.querySelectorAll('[vs-role=extension]');
-    const toggle = widget.querySelector('[vs-role=toggle]');
+function extendingForm(widget) {
+  const extensions = widget.querySelectorAll('[kjs-role=extension]');
+  const toggle = widget.querySelector('[kjs-role=toggle]');
 
-    function dependentHide() {
-      extensions.forEach((extension) => {
-        if (toggle.value == extension.getAttribute('vs-trigger')) {
-          extension.classList.add('reveal');
-        } else {
-          extension.classList.remove('reveal');
-        }
-      });
-    }
-
-    dependentHide();
-
-    toggle.addEventListener('change', (toggle) => {
-      dependentHide();
+  function setup() {
+    extensions.forEach((extension) => {
+      if (toggle.value == extension.getAttribute('kjs-trigger')) {
+        extension.classList.add('reveal');
+      } else {
+        extension.classList.remove('reveal');
+      }
     });
   }
-};
+
+  const actions = [{
+    element: toggle,
+    event: 'change',
+    handler: setup
+  }];
+
+  return { setup, actions };
+}
 
 module.exports = extendingForm;

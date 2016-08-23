@@ -1,32 +1,36 @@
-const tabs = {
-  initialize(widget) {
-    const contents = widget.querySelectorAll('[vs-role=content]');
-    const tabs = widget.querySelectorAll('[vs-role=tab]');
+function tabs(widget) {
+  const contents = widget.querySelectorAll('[kjs-role=content]');
+  const tabs = widget.querySelectorAll('[kjs-role=tab]');
 
-    function dependentHide() {
-      const activeTab = widget.querySelector('.active[vs-role=tab]');
+  function setup() {
+    const activeTab = widget.querySelector('.active[kjs-role=tab]');
 
-      contents.forEach((content) => {
-        if (activeTab.getAttribute('vs-id') == content.getAttribute('vs-tab-id')) {
-          content.classList.add('active');
-        } else {
-          content.classList.remove('active');
-        }
-      });
-    }
-
-    function handleTabClick(e) {
-      tabs.forEach((tab) => { tab.classList.remove('active'); });
-      e.target.classList.add('active');
-      dependentHide();
-    }
-
-    dependentHide();
-
-    tabs.forEach((tab) => {
-      tab.addEventListener('click', handleTabClick);
+    contents.forEach((content) => {
+      if (activeTab.getAttribute('kjs-id') == content.getAttribute('kjs-tab-id')) {
+        content.classList.add('active');
+      } else {
+        content.classList.remove('active');
+      }
     });
   }
-};
+
+  function handleTabClick(e) {
+    tabs.forEach((tab) => { tab.classList.remove('active'); });
+    e.target.classList.add('active');
+    setup();
+  }
+
+  let actions = [];
+
+  tabs.forEach((tab) => {
+    actions.push({
+      element: tab,
+      event: 'click',
+      handler: handleTabClick
+    });
+  });
+
+  return { setup, actions };
+}
 
 module.exports = tabs;

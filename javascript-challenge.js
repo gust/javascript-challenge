@@ -1,9 +1,38 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
-var _vs = require('./vs');
+function runSetup(widget) {
+  if (widget.setup) {
+    widget.setup();
+  };
+};
 
-var _vs2 = _interopRequireDefault(_vs);
+function setListeners(widget) {
+  widget.actions.forEach(function (action) {
+    action.element.addEventListener(action.event, action.handler);
+  });
+};
+
+function kjs(constructors, page) {
+  var widgetElements = page.querySelectorAll('[kjs-type]');
+
+  widgetElements.forEach(function (el) {
+    var widgetName = el.getAttribute('kjs-type');
+    var widget = constructors[widgetName](el);
+
+    runSetup(widget);
+    setListeners(widget);
+  });
+};
+
+module.exports = kjs;
+
+},{}],2:[function(require,module,exports){
+'use strict';
+
+var _k = require('./k');
+
+var _k2 = _interopRequireDefault(_k);
 
 var _drawers = require('./widgets/drawers');
 
@@ -20,126 +49,110 @@ var _tabs2 = _interopRequireDefault(_tabs);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 document.addEventListener("DOMContentLoaded", function () {
-  _vs2.default.initializeWidgets({
-    drawers: _drawers2.default,
-    extendingForm: _extendingForm2.default,
-    tabs: _tabs2.default
-  });
+  (0, _k2.default)({ drawers: _drawers2.default, extendingForm: _extendingForm2.default, tabs: _tabs2.default }, document);
 });
 
-},{"./vs":2,"./widgets/drawers":3,"./widgets/extending-form":4,"./widgets/tabs":5}],2:[function(require,module,exports){
+},{"./k":1,"./widgets/drawers":3,"./widgets/extending-form":4,"./widgets/tabs":5}],3:[function(require,module,exports){
 'use strict';
 
-var VS = {
-  index: {},
+function accordion(widget) {
+  var handles = widget.querySelectorAll('[kjs-role=handle]');
+  var drawers = widget.querySelectorAll('[kjs-role=drawer]');
 
-  initializeWidgets: function initializeWidgets(widgetIndex) {
-    var _this = this;
+  function handleClick(e) {
+    var openId = e.target.getAttribute('kjs-id');
 
-    this.index = widgetIndex;
-    var widgets = document.querySelectorAll('[vs-type]');
-
-    widgets.forEach(function (widget) {
-      var widgetObject = _this.index[widget.getAttribute('vs-type')];
-      widgetObject.initialize(widget);
+    drawers.forEach(function (drawer) {
+      if (drawer.getAttribute('kjs-handle-id') == openId) {
+        drawer.classList.toggle('open');
+      } else {
+        drawer.classList.remove('open');
+      }
     });
   }
-};
 
-module.exports = VS;
-
-},{}],3:[function(require,module,exports){
-'use strict';
-
-var accordion = {
-  initialize: function initialize(widget) {
-    var handles = widget.querySelectorAll('[vs-role=handle]');
-    var drawers = widget.querySelectorAll('[vs-role=drawer]');
-
-    function handleClick(e) {
-      var openId = e.target.getAttribute('vs-id');
-
-      drawers.forEach(function (drawer) {
-        if (drawer.getAttribute('vs-handle-id') == openId) {
-          drawer.classList.toggle('open');
-        } else {
-          drawer.classList.remove('open');
-        }
-      });
-    }
-
-    handles.forEach(function (handle) {
-      handle.addEventListener('click', handleClick);
+  var actions = [];
+  handles.forEach(function (handle) {
+    actions.push({
+      element: handle,
+      event: 'click',
+      handler: handleClick
     });
-  }
-};
+  });
+
+  return { actions: actions };
+}
 
 module.exports = accordion;
 
 },{}],4:[function(require,module,exports){
 'use strict';
 
-var extendingForm = {
-  initialize: function initialize(widget) {
-    var extensions = widget.querySelectorAll('[vs-role=extension]');
-    var toggle = widget.querySelector('[vs-role=toggle]');
+function extendingForm(widget) {
+  var extensions = widget.querySelectorAll('[kjs-role=extension]');
+  var toggle = widget.querySelector('[kjs-role=toggle]');
 
-    function dependentHide() {
-      extensions.forEach(function (extension) {
-        if (toggle.value == extension.getAttribute('vs-trigger')) {
-          extension.classList.add('reveal');
-        } else {
-          extension.classList.remove('reveal');
-        }
-      });
-    }
-
-    dependentHide();
-
-    toggle.addEventListener('change', function (toggle) {
-      dependentHide();
+  function setup() {
+    extensions.forEach(function (extension) {
+      if (toggle.value == extension.getAttribute('kjs-trigger')) {
+        extension.classList.add('reveal');
+      } else {
+        extension.classList.remove('reveal');
+      }
     });
   }
-};
+
+  var actions = [{
+    element: toggle,
+    event: 'change',
+    handler: setup
+  }];
+
+  return { setup: setup, actions: actions };
+}
 
 module.exports = extendingForm;
 
 },{}],5:[function(require,module,exports){
 'use strict';
 
-var tabs = {
-  initialize: function initialize(widget) {
-    var contents = widget.querySelectorAll('[vs-role=content]');
-    var tabs = widget.querySelectorAll('[vs-role=tab]');
+function tabs(widget) {
+  var contents = widget.querySelectorAll('[kjs-role=content]');
+  var tabs = widget.querySelectorAll('[kjs-role=tab]');
 
-    function dependentHide() {
-      var activeTab = widget.querySelector('.active[vs-role=tab]');
+  function setup() {
+    var activeTab = widget.querySelector('.active[kjs-role=tab]');
 
-      contents.forEach(function (content) {
-        if (activeTab.getAttribute('vs-id') == content.getAttribute('vs-tab-id')) {
-          content.classList.add('active');
-        } else {
-          content.classList.remove('active');
-        }
-      });
-    }
-
-    function handleTabClick(e) {
-      tabs.forEach(function (tab) {
-        tab.classList.remove('active');
-      });
-      e.target.classList.add('active');
-      dependentHide();
-    }
-
-    dependentHide();
-
-    tabs.forEach(function (tab) {
-      tab.addEventListener('click', handleTabClick);
+    contents.forEach(function (content) {
+      if (activeTab.getAttribute('kjs-id') == content.getAttribute('kjs-tab-id')) {
+        content.classList.add('active');
+      } else {
+        content.classList.remove('active');
+      }
     });
   }
-};
+
+  function handleTabClick(e) {
+    tabs.forEach(function (tab) {
+      tab.classList.remove('active');
+    });
+    e.target.classList.add('active');
+    setup();
+  }
+
+  var actions = [];
+
+  tabs.forEach(function (tab) {
+    actions.push({
+      element: tab,
+      event: 'click',
+      handler: handleTabClick
+    });
+  });
+
+  return { setup: setup, actions: actions };
+}
 
 module.exports = tabs;
 
-},{}]},{},[1]);
+},{}]},{},[2]);

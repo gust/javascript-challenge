@@ -1,4 +1,4 @@
-[vs-type=tabs] {
+[kjs-type=tabs] {
   ul {
     @include clearfix;
     margin: 0;
@@ -6,7 +6,7 @@
     list-style: none;
     width: 100%;
 
-    li[vs-role=tab] {
+    li[kjs-role=tab] {
       float: left;
       padding: 6px 12px;
       margin: 0 2px;
@@ -24,7 +24,7 @@
     }
   }
 
-  [vs-role=content] {
+  [kjs-role=content] {
     border: 1px solid $blue;
     width: 100%;
     &:not(.active) { display: none; }

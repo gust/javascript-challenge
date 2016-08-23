@@ -17,8 +17,9 @@ Create a 'linked checkbox' that allows a user to check or uncheck all of the rel
 - for an example of this behavior, check out a gmail inbox
 
 ##What we’re looking for:
+We want to see the way you approach learning about a new codebase, asking questions, solving problems, and communicating your intent. The javascript framework is very rough, has poor cross-browser compatibility, and is generally silly, but we don't want you to focus on those details, instead try to show us how you tackle a new problem. 
 
 ## Technical setup
-Javascript. 
+k.js and the widgets we wrote with it are written in ejs, but have no other dependencies. Jquery is available in the head of the html page, but you certainly don't need to use it to complete the challenge satisfactorily.
 
 Happy Coding!

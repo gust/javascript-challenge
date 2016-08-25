@@ -1,0 +1,36 @@
+- INPUT = each widgjet must take in kjs type for the widget
+- OUTPUT = an object that contains a setup function(optional) and an array of actions for each element in the widget
+- should not manage state (use classes)
+- super checkbox states: unchecked, checked, checked && intermediary classList
+- related checkbox states: all checked, all unchecked, some checked
+
+setup function
+- grab controlling checkbox
+- grab all unrelated checkboxes
+- uncheck all
+
+handleclick function
+- handles event for clicking super checkbox
+- checks to see the state of the super checkbox
+  - if its checked
+    - iterate through all related checkboxes and check
+    - remove intermediary class if it has it
+  - if its unchecked
+    - remove intermediary class if it has it
+    - iterate through all related checkboxes and uncheck them
+
+- handleRelatedClick
+ - grabs targeted checkbox
+ - grabs the super checkbox
+ - if the super checkbox is active && the targetd checkbox is clicked
+  - add intermidary class to super
+
+- updateState
+  - if the super checkbox is checked && has intermediary class
+    - if all related are checked
+      - remove intermidiary class from super checkbox
+    - if all are unchecked
+      - remove intermidiary class (if it is there) from super
+      - uncheck super
+    - if some are checked
+      - add intermidiary class to super

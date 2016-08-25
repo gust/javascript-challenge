@@ -46,13 +46,57 @@ var _tabs = require('./widgets/tabs');
 
 var _tabs2 = _interopRequireDefault(_tabs);
 
+var _checkBoxes = require('./widgets/check-boxes');
+
+var _checkBoxes2 = _interopRequireDefault(_checkBoxes);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 document.addEventListener("DOMContentLoaded", function () {
-  (0, _k2.default)({ drawers: _drawers2.default, extendingForm: _extendingForm2.default, tabs: _tabs2.default }, document);
+  (0, _k2.default)({ drawers: _drawers2.default, extendingForm: _extendingForm2.default, tabs: _tabs2.default, checkBoxes: _checkBoxes2.default }, document);
 });
 
-},{"./k":1,"./widgets/drawers":3,"./widgets/extending-form":4,"./widgets/tabs":5}],3:[function(require,module,exports){
+// var foo = someObject;
+
+// { foo: foo }
+// { foo }
+
+// { drawers: drawers, extendingForm: extendingForm }
+
+},{"./k":1,"./widgets/check-boxes":3,"./widgets/drawers":4,"./widgets/extending-form":5,"./widgets/tabs":6}],3:[function(require,module,exports){
+'use strict';
+
+function checkBoxes(widget) {
+  var masterCheckbox = widget.querySelector('[kjs-role=master]');
+  var checkBoxes = widget.querySelectorAll('[kjs-role=drawer]');
+
+  function handleClick(e) {
+    var openId = e.target.getAttribute('kjs-id');
+
+    checkBoxes.forEach(function (drawer) {
+      if (drawer.getAttribute('kjs-handle-id') == openId) {
+        drawer.classList.toggle('open');
+      } else {
+        drawer.classList.remove('open');
+      }
+    });
+  }
+
+  var actions = [];
+  handles.forEach(function (handle) {
+    actions.push({
+      element: handle,
+      event: 'click',
+      handler: handleClick
+    });
+  });
+
+  return { actions: actions };
+}
+
+module.exports = checkBoxes;
+
+},{}],4:[function(require,module,exports){
 'use strict';
 
 function accordion(widget) {
@@ -85,7 +129,7 @@ function accordion(widget) {
 
 module.exports = accordion;
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 'use strict';
 
 function extendingForm(widget) {
@@ -113,7 +157,7 @@ function extendingForm(widget) {
 
 module.exports = extendingForm;
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 'use strict';
 
 function tabs(widget) {

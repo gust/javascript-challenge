@@ -15,8 +15,8 @@
     "build": "npm run build:js && npm run build:scss",
     "build:js": "browserify javascripts/main.js -o javascript-challenge.js -t [ babelify --presets [ es2015 ] ]",
     "build:scss": "node-sass --include-path styles styles/_.scss javascript-challenge.css",
-    "watch:js": "nodemon -e js -i javascript-challenge.js -x 'npm run build:js'"
-    "watch:scss": "nodemon -e scss -x 'npm run build:scss'"
+    "watch:js": "nodemon -e js -i javascript-challenge.js -x 'npm run build:js'",
+    "watch:scss": "nodemon -e scss -x 'npm run build:scss'",
     "watch": "nodemon -e js,scss -i javascript-challenge.js -x 'npm run build'"
   },
 

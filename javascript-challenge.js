@@ -46,13 +46,26 @@ var _tabs = require('./widgets/tabs');
 
 var _tabs2 = _interopRequireDefault(_tabs);
 
+var _checkbox = require('./widgets/checkbox');
+
+var _checkbox2 = _interopRequireDefault(_checkbox);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 document.addEventListener("DOMContentLoaded", function () {
-  (0, _k2.default)({ drawers: _drawers2.default, extendingForm: _extendingForm2.default, tabs: _tabs2.default }, document);
+  (0, _k2.default)({ drawers: _drawers2.default, extendingForm: _extendingForm2.default, tabs: _tabs2.default, checkbox: _checkbox2.default }, document);
+  // { foo, bar, baz }
+  // { foo: foo, bar: bar, baz: baz }
 });
 
-},{"./k":1,"./widgets/drawers":3,"./widgets/extending-form":4,"./widgets/tabs":5}],3:[function(require,module,exports){
+},{"./k":1,"./widgets/checkbox":3,"./widgets/drawers":4,"./widgets/extending-form":5,"./widgets/tabs":6}],3:[function(require,module,exports){
+"use strict";
+
+function checkbox() {}
+
+module.exports = checkbox;
+
+},{}],4:[function(require,module,exports){
 'use strict';
 
 function accordion(widget) {
@@ -85,7 +98,7 @@ function accordion(widget) {
 
 module.exports = accordion;
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 'use strict';
 
 function extendingForm(widget) {
@@ -113,7 +126,7 @@ function extendingForm(widget) {
 
 module.exports = extendingForm;
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 'use strict';
 
 function tabs(widget) {

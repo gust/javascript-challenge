@@ -49,7 +49,7 @@ var _tabs2 = _interopRequireDefault(_tabs);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 document.addEventListener("DOMContentLoaded", function () {
-  (0, _k2.default)({ drawers: _drawers2.default, extendingForm: _extendingForm2.default, tabs: _tabs2.default }, document);
+  (0, _k2.default)({ drawers: _drawers2.default, extendingForm: _extendingForm2.default, tabs: _tabs2.default, linkedCheckBoxes: linkedCheckBoxes }, document);
 });
 
 },{"./k":1,"./widgets/drawers":3,"./widgets/extending-form":4,"./widgets/tabs":5}],3:[function(require,module,exports){

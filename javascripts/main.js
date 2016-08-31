@@ -4,5 +4,5 @@ import extendingForm from './widgets/extending-form';
 import tabs          from './widgets/tabs';
 
 document.addEventListener("DOMContentLoaded", () => {
-  kjs({ drawers, extendingForm, tabs }, document);
+  kjs({ drawers: drawers, extendingForm: extendingForm, tabs: tabs, linkedCheckBoxes: linkedCheckBoxes }, document);
 });

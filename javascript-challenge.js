@@ -33,16 +33,18 @@ var _k = _interopRequireDefault(require("./k"));
 var _drawers = _interopRequireDefault(require("./widgets/drawers"));
 var _extendingForm = _interopRequireDefault(require("./widgets/extending-form"));
 var _tabs = _interopRequireDefault(require("./widgets/tabs"));
+var _linkedCheckboxes = _interopRequireDefault(require("./widgets/linked-checkboxes"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 document.addEventListener("DOMContentLoaded", function () {
   (0, _k["default"])({
     drawers: _drawers["default"],
     extendingForm: _extendingForm["default"],
-    tabs: _tabs["default"]
+    tabs: _tabs["default"],
+    linkedCheckboxes: _linkedCheckboxes["default"]
   }, document);
 });
 
-},{"./k":1,"./widgets/drawers":3,"./widgets/extending-form":4,"./widgets/tabs":5}],3:[function(require,module,exports){
+},{"./k":1,"./widgets/drawers":3,"./widgets/extending-form":4,"./widgets/linked-checkboxes":5,"./widgets/tabs":6}],3:[function(require,module,exports){
 "use strict";
 
 function accordion(widget) {
@@ -100,6 +102,88 @@ function extendingForm(widget) {
 module.exports = extendingForm;
 
 },{}],5:[function(require,module,exports){
+"use strict";
+
+function linkedCheckboxes(widget) {
+  var checkboxes = widget.querySelectorAll('[kjs-role=controller], [kjs-role=controllee]');
+  function handleClick(e) {
+    var isController = e.target.getAttribute('kjs-role') === 'controller';
+    if (isController) {
+      var id = e.target.getAttribute('kjs-id');
+      var status = e.target.getAttribute('kjs-status');
+      var controllees = widget.querySelectorAll("[kjs-controller-id=".concat(id, "]"));
+      switch (status) {
+        case 'checked':
+          e.target.setAttribute('kjs-status', 'unchecked');
+          controllees.forEach(function (controllee) {
+            controllee.checked = false;
+          });
+          break;
+        case 'intermediary':
+          e.target.setAttribute('kjs-status', 'unchecked');
+          controllees.forEach(function (controllee) {
+            controllee.checked = false;
+          });
+          break;
+        default:
+          e.target.setAttribute('kjs-status', 'checked');
+          controllees.forEach(function (controllee) {
+            controllee.checked = true;
+          });
+      }
+    } else {
+      var controllerId = e.target.getAttribute('kjs-controller-id');
+      var controller = widget.querySelector("[kjs-id=".concat(controllerId, "]"));
+      var _status = controller.getAttribute('kjs-status');
+      var _controllees = widget.querySelectorAll("[kjs-controller-id=".concat(controllerId, "]"));
+      switch (_status) {
+        case 'checked':
+          e.target.checked = false;
+          controller.setAttribute('kjs-status', 'intermediary');
+          break;
+        case 'intermediary':
+          if (e.target.checked) {
+            // User clicked on an unchecked related checkbox, so it became checked.
+            var allChecked = true;
+            _controllees.forEach(function (controllee) {
+              allChecked && (allChecked = controllee.checked);
+            });
+            if (allChecked) {
+              controller.setAttribute('kjs-status', 'checked');
+            }
+          } else {
+            // User clicked on a checked related checkbox, so it became unchecked.
+            var checkedExists = false;
+            _controllees.forEach(function (controllee) {
+              checkedExists || (checkedExists = controllee.checked);
+            });
+            if (!checkedExists) {
+              controller.checked = false;
+              controller.setAttribute('kjs-status', 'unchecked');
+            }
+          }
+          break;
+        default:
+          e.target.checked = true;
+          break;
+      }
+    }
+  }
+  var actions = [];
+  checkboxes.forEach(function (checkbox) {
+    actions.push({
+      element: checkbox,
+      event: 'change',
+      handler: handleClick
+    });
+  });
+  return {
+    actions: actions
+  };
+}
+module.exports = linkedCheckboxes;
+
+},{}],6:[function(require,module,exports){
 "use strict";
 
 function tabs(widget) {

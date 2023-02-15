@@ -40,6 +40,48 @@ document.addEventListener("DOMContentLoaded", function () {
     extendingForm: _extendingForm["default"],
     tabs: _tabs["default"]
   }, document);
+  var masterCheckbox = document.getElementById("masterCheckbox");
+  var linkedCheckboxes = document.getElementsByClassName("linkedCheckbox");
+
+  // Add click event listener to master checkbox
+  masterCheckbox.addEventListener("click", function () {
+    if (this.checked) {
+      // If master checkbox is checked, check all linked checkboxes
+      for (var i = 0; i < linkedCheckboxes.length; i++) {
+        linkedCheckboxes[i].checked = true;
+      }
+    } else {
+      // If master checkbox is unchecked, uncheck all linked checkboxes
+      for (var _i = 0; _i < linkedCheckboxes.length; _i++) {
+        linkedCheckboxes[_i].checked = false;
+      }
+    }
+  });
+
+  // Add click event listener to linked checkboxes
+  for (var i = 0; i < linkedCheckboxes.length; i++) {
+    linkedCheckboxes[i].addEventListener("click", function () {
+      var checkedCount = 0;
+      for (var j = 0; j < linkedCheckboxes.length; j++) {
+        if (linkedCheckboxes[j].checked) {
+          checkedCount++;
+        }
+      }
+      if (checkedCount === linkedCheckboxes.length) {
+        // If all linked checkboxes are checked, check the master checkbox
+        masterCheckbox.checked = true;
+        masterCheckbox.indeterminate = false;
+      } else if (checkedCount === 0) {
+        // If no linked checkboxes are checked, uncheck the master checkbox
+        masterCheckbox.checked = false;
+        masterCheckbox.indeterminate = false;
+      } else {
+        // If some linked checkboxes are checked, set the master checkbox to indeterminate
+        masterCheckbox.checked = false;
+        masterCheckbox.indeterminate = true;
+      }
+    });
+  }
 });
 
 },{"./k":1,"./widgets/drawers":3,"./widgets/extending-form":4,"./widgets/tabs":5}],3:[function(require,module,exports){

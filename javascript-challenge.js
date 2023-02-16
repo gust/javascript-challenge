@@ -30,6 +30,7 @@ module.exports = kjs;
 "use strict";
 
 var _k = _interopRequireDefault(require("./k"));
+var _checkboxes = _interopRequireDefault(require("./widgets/checkboxes"));
 var _drawers = _interopRequireDefault(require("./widgets/drawers"));
 var _extendingForm = _interopRequireDefault(require("./widgets/extending-form"));
 var _tabs = _interopRequireDefault(require("./widgets/tabs"));
@@ -38,11 +39,45 @@ document.addEventListener("DOMContentLoaded", function () {
   (0, _k["default"])({
     drawers: _drawers["default"],
     extendingForm: _extendingForm["default"],
-    tabs: _tabs["default"]
+    tabs: _tabs["default"],
+    checkboxes: _checkboxes["default"]
   }, document);
 });
 
-},{"./k":1,"./widgets/drawers":3,"./widgets/extending-form":4,"./widgets/tabs":5}],3:[function(require,module,exports){
+},{"./k":1,"./widgets/checkboxes":3,"./widgets/drawers":4,"./widgets/extending-form":5,"./widgets/tabs":6}],3:[function(require,module,exports){
+"use strict";
+
+function checkbox(widget) {
+  var checkboxes = widget.querySelectorAll('input[type="checkbox"]');
+  var parentCheckbox = widget.querySelector('[kjs-role=parent]');
+  var childCheckboxes = widget.querySelectorAll('[kjs-role=child]');
+  function handleCheckboxClick(e) {
+    var targetRole = e.target.getAttribute('kjs-role');
+    if (targetRole === 'parent') {
+      childCheckboxes.forEach(function (child) {
+        child.checked = e.target.checked;
+      });
+    } else {
+      var checkedCount = widget.querySelectorAll('[kjs-role=child]:checked').length;
+      parentCheckbox.checked = checkedCount > 0;
+      parentCheckbox.indeterminate = checkedCount > 0 && checkedCount < childCheckboxes.length;
+    }
+  }
+  var actions = [];
+  checkboxes.forEach(function (checkbox) {
+    actions.push({
+      element: checkbox,
+      event: 'click',
+      handler: handleCheckboxClick
+    });
+  });
+  return {
+    actions: actions
+  };
+}
+module.exports = checkbox;
+
+},{}],4:[function(require,module,exports){
 "use strict";
 
 function accordion(widget) {
@@ -72,7 +107,7 @@ function accordion(widget) {
 }
 module.exports = accordion;
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 "use strict";
 
 function extendingForm(widget) {
@@ -99,7 +134,7 @@ function extendingForm(widget) {
 }
 module.exports = extendingForm;
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 "use strict";
 
 function tabs(widget) {

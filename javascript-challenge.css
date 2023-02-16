@@ -84,3 +84,10 @@ form[kjs-type=extendingForm] [kjs-role=extension] {
     display: none; }
   [kjs-type=tabs] [kjs-role=content] img {
     width: 100%; }
+
+    [kjs-type=checkboxes] {
+      background-color: #C3EBEE;
+      padding: 6px; }
+      [kjs-type=checkboxes] ul {
+        list-style: none; }
+    

@@ -1,8 +1,9 @@
-import kjs           from './k';
-import drawers       from './widgets/drawers';
+import kjs from './k';
+import checkboxes from './widgets/checkboxes';
+import drawers from './widgets/drawers';
 import extendingForm from './widgets/extending-form';
-import tabs          from './widgets/tabs';
+import tabs from './widgets/tabs';
 
 document.addEventListener("DOMContentLoaded", () => {
-  kjs({ drawers, extendingForm, tabs }, document);
+  kjs({ drawers, extendingForm, tabs, checkboxes }, document);
 });

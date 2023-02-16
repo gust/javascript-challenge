@@ -70,9 +70,20 @@
 
     <section class="example">
       <h2>Linked Checkboxes</h2>
-      TODO
+      <div kjs-type="checkboxes">
+        <ul>
+          <li>
+              <label><input kjs-role="parent" type="checkbox" id="parentCheckbox"> Electronics</label>
+              <ul>
+                <li><label><input kjs-role="child" type="checkbox"> Laptops</label></li>
+                <li><label><input kjs-role="child" type="checkbox"> Microphones</label></li>
+                <li><label><input kjs-role="child" type="checkbox"> Speaker</label></li>
+              </ul>
+          </li>
+        </ul>
+      </div>
     </section>
 
   </body>
-
+  
 </html>

@@ -7,7 +7,6 @@
     <!-- http://pixel.nymag.com/imgs/daily/vulture/2015/07/22/magazine/22-dr-seuss-colors.nocrop.w529.h777.jpg -->
 
     <link href="javascript-challenge.css" rel="stylesheet" title="Default Style">
-    <script src="javascript-challenge.js"></script>
   </head>
 
   <body>
@@ -70,9 +69,42 @@
 
     <section class="example">
       <h2>Linked Checkboxes</h2>
-      TODO
+      <form class="checkform">
+        <div data-checkbox-group>
+          <label class="all-selector"><input type="checkbox" data-main-checkbox />All are Vegetables</label>
+          <ul>
+              <li class="check"><label><input type="checkbox" />Floor</label></li>
+              <li class="check"><label><input type="checkbox" />Tomatoes</label></li>
+              <li class="check"><label><input type="checkbox" />Potatoes</label></li>
+              <li class="check"><label><input type="checkbox" />Broccoli</label></li>
+              <li class="check"><label><input type="checkbox" />Cauliflower</label></li>
+          </ul>
+        </div>
+        <hr>
+        <div data-checkbox-group>
+          <label class="all-selector"><input type="checkbox" data-main-checkbox />All are Fruits</label>
+          <ul>
+              <li class="check"><label><input type="checkbox" />Apples</label></li>
+              <li class="check"><label><input type="checkbox" />Oranges</label></li>
+              <li class="check"><label><input type="checkbox" />Dust</label></li>
+              <li class="check"><label><input type="checkbox" />Kiwi</label></li>
+              <li class="check"><label><input type="checkbox" />Litchi</label></li>
+          </ul>
+        </div>
+        <hr>
+        <div data-checkbox-group>
+          <label class="all-selector"><input type="checkbox" data-main-checkbox />All are Snacks</label>
+          <ul>
+              <li class="check"><label><input type="checkbox" />Cheese</label></li>
+              <li class="check"><label><input type="checkbox" />Nuts</label></li>
+              <li class="check"><label><input type="checkbox" />Potato Chips</label></li>
+              <li class="check"><label><input type="checkbox" />Wood</label></li>
+              <li class="check"><label><input type="checkbox" />Cake</label></li>
+          </ul>
+        </div>
+      </form>
     </section>
-
+    <script src="./javascript-challenge.js"></script>
   </body>
 
 </html>

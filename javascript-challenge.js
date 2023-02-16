@@ -138,3 +138,28 @@ function tabs(widget) {
 module.exports = tabs;
 
 },{}]},{},[2]);
+
+
+// Iterate through the checkboxes
+function toggleChecks() {
+  let mainCheckbox = this.hasAttribute('data-main-checkbox');
+  let group = this.closest('[data-checkbox-group]');
+  let listItems = group.querySelectorAll('input[type=checkbox]:not([data-main-checkbox])');
+  let main = mainCheckbox ? this : group.querySelector('input[type=checkbox][data-main-checkbox]');
+
+  if (mainCheckbox) {
+    // Set all children to the value of the parent
+    listItems.forEach(checkbox => checkbox.checked = this.checked);
+  } else {
+    // Toggle all children to the state of the main
+    let checkedCount = 0;
+    listItems.forEach(checkbox => checkedCount += checkbox.checked ? 1 : 0);
+
+    main.checked = checkedCount == listItems.length;
+    main.indeterminate = !main.checked && !checkedCount == 0;
+  }
+}
+
+let nodes = document.querySelectorAll('[data-checkbox-group] input[type=checkbox]');
+nodes.forEach(node => node.addEventListener('change', toggleChecks));
+

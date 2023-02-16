@@ -84,3 +84,16 @@ form[kjs-type=extendingForm] [kjs-role=extension] {
     display: none; }
   [kjs-type=tabs] [kjs-role=content] img {
     width: 100%; }
+
+.check {
+  list-style: none;
+}
+.check:active {
+  color: white;
+  background-color: #00B7BD;
+  border-color: #00B7BD;
+}
+.all-selector:active {
+  color:aqua;
+  background-color: #222;
+}

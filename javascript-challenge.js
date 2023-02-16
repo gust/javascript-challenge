@@ -49,25 +49,56 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function checkbox(widget) {
   var checkboxes = widget.querySelectorAll('input[type="checkbox"]');
-  var parentCheckbox = widget.querySelector('[kjs-role=parent]');
-  var childCheckboxes = widget.querySelectorAll('[kjs-role=child]');
+  var parentCheckbox = widget.querySelector("[kjs-role=parent]");
+  var childCheckboxes = widget.querySelectorAll("[kjs-role=child]");
   function handleCheckboxClick(e) {
-    var targetRole = e.target.getAttribute('kjs-role');
-    if (targetRole === 'parent') {
+    var targetRole = e.target.getAttribute("kjs-role");
+    if (targetRole === "parent") {
       childCheckboxes.forEach(function (child) {
         child.checked = e.target.checked;
+        if (child.getAttribute("kjs-has-children") === "true") {
+          child.indeterminate = e.target.indeterminate;
+          toggleChildren(child, e.target.checked);
+        }
       });
     } else {
-      var checkedCount = widget.querySelectorAll('[kjs-role=child]:checked').length;
+      if (e.target.getAttribute("kjs-parent-id")) {
+        toggleParent(e.target.getAttribute("kjs-parent-id"));
+      }
+      if (e.target.getAttribute("kjs-has-children") === "true") {
+        toggleChildren(e.target, e.target.checked);
+      }
+      var checkedCount = widget.querySelectorAll("[kjs-role=child]:checked").length;
       parentCheckbox.checked = checkedCount > 0;
       parentCheckbox.indeterminate = checkedCount > 0 && checkedCount < childCheckboxes.length;
     }
+  }
+  function toggleParent(parentKey) {
+    var nestedParentCheckbox = widget.querySelector("[kjs-id=\"".concat(parentKey, "\"]"));
+    var nestedChildCheckbox = widget.querySelectorAll("[kjs-parent-id=\"".concat(parentKey, "\"]"));
+    var nestedChildCheckedCount = widget.querySelectorAll("[kjs-parent-id=\"".concat(parentKey, "\"]:checked")).length;
+    nestedParentCheckbox.checked = nestedChildCheckedCount > 0;
+    nestedParentCheckbox.indeterminate = nestedChildCheckedCount > 0 && nestedChildCheckedCount < nestedChildCheckbox.length;
+    var nestedParentBoxUpdated = nestedParentCheckbox.checked && !nestedParentCheckbox.indeterminate || !nestedParentCheckbox.checked && !nestedParentCheckbox.indeterminate;
+    var hasParentId = nestedParentCheckbox.getAttribute("kjs-parent-id");
+    if (hasParentId && nestedParentBoxUpdated) {
+      toggleParent(hasParentId);
+    }
+  }
+  function toggleChildren(parent, checked) {
+    var children = parent.parentElement.parentElement.querySelectorAll("[kjs-parent-id=\"".concat(parent.getAttribute("kjs-id"), "\"]"));
+    children.forEach(function (child) {
+      child.checked = checked;
+      if (child.getAttribute("kjs-has-children") === "true") {
+        toggleChildren(child, checked);
+      }
+    });
   }
   var actions = [];
   checkboxes.forEach(function (checkbox) {
     actions.push({
       element: checkbox,
-      event: 'click',
+      event: "click",
       handler: handleCheckboxClick
     });
   });

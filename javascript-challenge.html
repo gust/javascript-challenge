@@ -73,11 +73,23 @@
       <div kjs-type="checkboxes">
         <ul>
           <li>
-              <label><input kjs-role="parent" type="checkbox" id="parentCheckbox"> Electronics</label>
+              <label><input kjs-role="parent" type="checkbox" id="parentCheckbox"> United States </label>
               <ul>
-                <li><label><input kjs-role="child" type="checkbox"> Laptops</label></li>
-                <li><label><input kjs-role="child" type="checkbox"> Microphones</label></li>
-                <li><label><input kjs-role="child" type="checkbox"> Speaker</label></li>
+                <li>
+                  <label><input kjs-role="child" kjs-has-children="true" kjs-id="parent_checkbox_1_id" type="checkbox"> East Coast </label>
+                  <ul>
+                    <li><label><input kjs-parent-id="parent_checkbox_1_id" type="checkbox"> New York</label></li>
+                    <li>
+                      <label><input kjs-parent-id="parent_checkbox_1_id" kjs-id="parent_checkbox_2_id" kjs-has-children="true" type="checkbox"> Virginia </label>
+                      <ul>
+                        <li><label><input kjs-parent-id="parent_checkbox_2_id" type="checkbox"> Fairfax</label></li>
+                        <li><label><input kjs-parent-id="parent_checkbox_2_id" type="checkbox"> Centreville</label></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li><label><input kjs-role="child" type="checkbox"> West Coast</label></li>
+                <li><label><input kjs-role="child" type="checkbox"> Other </label></li>
               </ul>
           </li>
         </ul>
@@ -85,5 +97,5 @@
     </section>
 
   </body>
-  
+
 </html>

@@ -70,9 +70,23 @@
 
     <section class="example">
       <h2>Linked Checkboxes</h2>
-      TODO
+      <fieldset>
+        <legend>Choose your interests</legend>
+        <div kjs-type="checkboxes">
+          <div id=c1 kjs-role="controller">
+            <input type="checkbox" id="interests" name="interest" value="all" />
+            <label for="coding">All</label>
+          </div>
+          <div id=c2 kjs-role="controlled">
+            <input type="checkbox" id="coding" name="interest" value="coding" />
+            <label for="coding">Coding</label>
+          </div>
+          <div id=c3 kjs-role="controlled" >
+            <input type="checkbox" id="music" name="interest" value="music" />
+            <label for="music">Music</label>
+          </div>
+        </div>
+      </fieldset>
     </section>
-
   </body>
-
 </html>

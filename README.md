@@ -23,6 +23,6 @@ We want to see the way you approach learning about a new codebase, asking questi
 k.js and the widgets we wrote with it are written in es6, but have no other dependencies. Jquery is available in the head of the html page, but you certainly don't need to use it to complete the challenge satisfactorily.
 
 ## Submission
-Please clone this repo, implement your design, push it to a new private repo in your GitHub account, then add devs@gust.com as a collaborator to that repo and we'll check it out.
+Please clone this repo, implement your design, push it to a new private repo in your GitHub account, add devs@gust.com as a collaborator to that repo, and notify us via email of your submission. Please include a link to your submission in the email so that we know which one is yours!
 
 Happy Coding!

@@ -84,3 +84,24 @@ form[kjs-type=extendingForm] [kjs-role=extension] {
     display: none; }
   [kjs-type=tabs] [kjs-role=content] img {
     width: 100%; }
+
+[kjs-role='checkbox-container'] {
+  border: 1px solid #00B7BD;
+  padding: 6px;
+  margin-top: 2px; }
+  [kjs-role='checkbox-container']:hover {
+    cursor: pointer; }
+  [kjs-role='checkbox-container'].active {
+    color: white;
+    background-color: #00B7BD; }
+
+[kjs-role='checkbox-controller'] {
+  cursor: pointer;
+  padding: 7px;
+  border: 1.5px solid black;
+  border-radius: 2px;
+  display: inline-block; }
+  [kjs-role='checkbox-controller'].checked {
+    background-color: #00B7BD; }
+  [kjs-role='checkbox-controller'].intermediary {
+    background-color: orange; }

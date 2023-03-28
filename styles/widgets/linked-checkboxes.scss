@@ -1,0 +1,27 @@
+[kjs-role='checkbox-container'] {
+  &:hover {
+    cursor: pointer;
+  }
+  &.active {
+    color: white;
+    background-color: $blue;
+  }
+
+  border: 1px solid $blue;
+  padding: 6px;
+  margin-top: 2px;
+}
+
+[kjs-role='checkbox-controller'] {
+  cursor: pointer;
+  padding: 7px;
+  border: 1.5px solid black;
+  border-radius: 2px;
+  display: inline-block;
+  &.checked {
+    background-color: $blue;
+  }
+  &.intermediary {
+    background-color: orange;
+  }
+}
